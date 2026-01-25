@@ -12,7 +12,7 @@ interface SEOProps {
 const DEFAULT_TITLE = 'Karen Santana - Frontend Developer Portfolio';
 const DEFAULT_DESCRIPTION = 'Karen Santana - Frontend Developer specializing in React, TypeScript, and modern web technologies. Building responsive and performant web applications with 5+ years of experience.';
 const DEFAULT_IMAGE = '/og-image.png';
-const DEFAULT_URL = 'https://karen-portfolio.vercel.app';
+const DEFAULT_URL = 'https://karensantana.com';
 
 export function SEO({ 
   title = DEFAULT_TITLE,
@@ -68,7 +68,7 @@ export function SEO({
           "name": "Karen Santana",
           "jobTitle": "Frontend Developer",
           "description": "Frontend Developer specializing in React, TypeScript, and modern web technologies",
-          "url": "https://karen-portfolio.vercel.app",
+          "url": "https://karensantana.com",
           "sameAs": [
             "https://www.linkedin.com/in/karennascimento3/",
             "https://github.com/karendev1"

@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://karen-portfolio.vercel.app/sitemap.xml
+Sitemap: https://karensantana.com
 
 # Block common bot paths
 Disallow: /admin/
