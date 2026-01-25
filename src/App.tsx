@@ -11,7 +11,7 @@ import { SEO } from "@/components/SEO";
 import { Suspense, lazy } from "react";
 
 // Lazy loading components
-const Index = lazy(() => import("./pages/Index"));
+const Index = lazy(() => import("./pages/index"));
 const Experience = lazy(() => import("./pages/Experience"));
 const Projects = lazy(() => import("./pages/Projects"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
