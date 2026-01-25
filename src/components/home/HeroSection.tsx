@@ -68,7 +68,7 @@ export function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-up animate-delay-500">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-up animate-delay-500 hidden md:flex">
         <a
           href="#about"
           className="flex flex-col items-center text-muted-foreground hover:text-primary transition-colors"
