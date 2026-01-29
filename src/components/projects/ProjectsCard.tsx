@@ -12,11 +12,19 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Card className="group bg-card/50 backdrop-blur-sm border-border hover:border-primary/30 card-hover overflow-hidden">
-      {/* Project Image Placeholder */}
-      <div className="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-        <span className="text-4xl font-mono font-bold text-primary/50">
-          {project.title.charAt(0)}
-        </span>
+      {/* Project Image */}
+      <div className="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center overflow-hidden">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <span className="text-4xl font-mono font-bold text-primary/50">
+            {project.title.charAt(0)}
+          </span>
+        )}
       </div>
 
       <CardHeader className="pb-3">

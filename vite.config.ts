@@ -13,7 +13,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'Karen - Frontend Developer Portfolio',
+        name: 'Karen - Frontend Software Engineer Senior',
         short_name: 'Karen Portfolio',
         description: 'Frontend developer specializing in React, TypeScript, and modern web technologies',
         theme_color: '#7c3aed',
