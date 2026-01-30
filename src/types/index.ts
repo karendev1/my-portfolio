@@ -30,7 +30,7 @@ export interface Article {
   slug: string;
   title: string;
   description: string;
-  content: string;
+  contentFile: string;
   date: string;
   readTime: string;
   tags: string[];

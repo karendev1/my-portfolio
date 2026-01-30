@@ -4,10 +4,24 @@ import { MarkdownRenderer } from "@/components/articles";
 import { articles } from "@/data/articles";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
+import { loadMarkdownContent } from "@/lib/markdown";
 
 export default function ArticleDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const article = articles.find((a) => a.slug === slug);
+  const [content, setContent] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (article?.contentFile) {
+      setIsLoading(true);
+      loadMarkdownContent(article.contentFile).then((content) => {
+        setContent(content);
+        setIsLoading(false);
+      });
+    }
+  }, [article?.contentFile]);
 
   if (!article) {
     return (
@@ -22,7 +36,7 @@ export default function ArticleDetailPage() {
     );
   }
 
-  const formattedDate = new Date(article.date).toLocaleDateString("en-US", {
+  const formattedDate = new Date(article.date + 'T00:00:00').toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -70,7 +84,16 @@ export default function ArticleDetailPage() {
           className="opacity-0 animate-fade-up"
           style={{ animationDelay: "200ms", animationFillMode: "forwards" }}
         >
-          <MarkdownRenderer content={article.content} />
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center py-12 gap-4">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+              <p className="text-sm text-muted-foreground animate-pulse">
+                Loading article...
+              </p>
+            </div>
+          ) : (
+            <MarkdownRenderer content={content} />
+          )}
         </div>
       </article>
     </SectionContainer>
