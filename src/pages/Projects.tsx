@@ -10,7 +10,7 @@ export default function ProjectsPage() {
         subtitle="Personal projects where I explore new technologies and solve real problems"
       />
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, index) => (
           <div
             key={project.id}
