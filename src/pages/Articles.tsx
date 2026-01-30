@@ -7,7 +7,6 @@ import { useState, useMemo } from "react";
 
 export default function ArticlesPage() {
   const [searchTerm, setSearchTerm] = useState("");
-
   const filteredArticles = useMemo(() => {
     if (!searchTerm) return articles;
     

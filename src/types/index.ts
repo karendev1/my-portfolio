@@ -32,7 +32,7 @@ export interface Article {
   description: string;
   contentFile: string;
   date: string;
-  readTime: string;
+  readTime?: string;
   tags: string[];
 }
 

@@ -5,23 +5,27 @@ import { articles } from "@/data/articles";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
-import { loadMarkdownContent } from "@/lib/markdown";
+import { calculateReadingTime, loadMarkdownContent } from "@/lib/markdown";
 
 export default function ArticleDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const article = articles.find((a) => a.slug === slug);
   const [content, setContent] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [readTime, setReadTime] = useState<number | null>(null);
 
   useEffect(() => {
-    if (article?.contentFile) {
-      setIsLoading(true);
-      loadMarkdownContent(article.contentFile).then((content) => {
-        setContent(content);
-        setIsLoading(false);
+    if (!article?.contentFile) return;
+
+    loadMarkdownContent(article.contentFile)
+      .then((markdown) => {
+        setContent(markdown);
+        setReadTime(calculateReadingTime(markdown));
+      })
+      .catch(() => {
+        setContent("Article content could not be loaded.");
       });
-    }
   }, [article?.contentFile]);
+
 
   if (!article) {
     return (
@@ -74,26 +78,14 @@ export default function ArticleDetailPage() {
             </span>
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
-              {article.readTime}
+              {readTime ? `${readTime} min read` : ""}
             </span>
           </div>
         </header>
 
         {/* Content */}
-        <div
-          className="opacity-0 animate-fade-up"
-          style={{ animationDelay: "200ms", animationFillMode: "forwards" }}
-        >
-          {isLoading ? (
-            <div className="flex flex-col items-center justify-center py-12 gap-4">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-              <p className="text-sm text-muted-foreground animate-pulse">
-                Loading article...
-              </p>
-            </div>
-          ) : (
-            <MarkdownRenderer content={content} />
-          )}
+        <div className="animate-fade-up" style={{ animationFillMode: "forwards" }}>
+          <MarkdownRenderer content={content} />
         </div>
       </article>
     </SectionContainer>

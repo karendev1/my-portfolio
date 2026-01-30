@@ -10,3 +10,16 @@ export async function loadMarkdownContent(filename: string): Promise<string> {
     return '';
   }
 }
+
+const WORDS_PER_MINUTE = 150;
+
+export function calculateReadingTime(markdown: string) {
+  const text = markdown
+    .replace(/[#_*>\-\[\]\(\)`]/g, "")
+    .replace(/\n/g, " ");
+
+  const words = text.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / WORDS_PER_MINUTE);
+
+  return minutes;
+}

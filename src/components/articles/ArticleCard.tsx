@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { TechBadge } from "@/components/shared";
 import type { Article } from "@/types";
+import { calculateReadingTime, loadMarkdownContent } from "@/lib/markdown";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
 
 interface ArticleCardProps {
   article: Article;
@@ -14,6 +16,19 @@ export function ArticleCard({ article }: ArticleCardProps) {
     month: "long",
     day: "numeric",
   });
+  const [readTime, setReadTime] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!article?.contentFile) return;
+
+    loadMarkdownContent(article.contentFile)
+      .then((markdown) => {
+        setReadTime(calculateReadingTime(markdown));
+      })
+      .catch(() => {
+        setReadTime(null);
+      });
+  }, [article?.contentFile]);
 
   return (
     <Link to={`/articles/${article.slug}`}>
@@ -40,7 +55,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
               </span>
               <span className="flex items-center gap-1.5">
                 <Clock className="h-3.5 w-3.5" />
-                {article.readTime}
+                {readTime ? `${readTime} min read` : ""}
               </span>
             </div>
 

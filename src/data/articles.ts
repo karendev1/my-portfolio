@@ -1,3 +1,4 @@
+import { calculateReadingTime } from "@/lib/markdown";
 import type { Article } from "@/types";
 
 const rawArticles: Article[] = [
@@ -8,7 +9,6 @@ const rawArticles: Article[] = [
     description:
       "Learn how to identify and fix performance bottlenecks in React applications with real-world examples and proven techniques.",
     date: "2025-12-15",
-    readTime: "8 min read",
     tags: ["React", "Performance", "Optimization"],
     contentFile: "optimizing-react-performance.md",
   },
@@ -19,7 +19,6 @@ const rawArticles: Article[] = [
     description:
       "Modern TypeScript patterns and practices for building maintainable applications, from strict typing to advanced generics.",
     date: "2025-11-20",
-    readTime: "10 min read",
     tags: ["TypeScript", "Best Practices", "Architecture"],
     contentFile: "typescript-best-practices-2025.md",
   },
@@ -30,7 +29,6 @@ const rawArticles: Article[] = [
     description:
       "A practical, in-depth guide to front-end performance optimization, covering network strategies, browser rendering, JavaScript loading, caching, and real-world SPA techniques.",
     date: "2026-01-30",
-    readTime: "18 min read",
     tags: [
       "Performance",
       "Web Performance",
