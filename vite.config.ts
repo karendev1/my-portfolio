@@ -76,10 +76,11 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
-          ui: ['@/components/ui'],
-          icons: ['lucide-react']
+          ui: ['@radix-ui/react-slot', '@radix-ui/react-tooltip', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          icons: ['lucide-react'],
+          query: ['@tanstack/react-query'],
+          sonner: ['sonner']
         }
       }
     },
