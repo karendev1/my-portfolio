@@ -1,4 +1,3 @@
-import { calculateReadingTime } from "@/lib/markdown";
 import type { Article } from "@/types";
 
 const rawArticles: Article[] = [
@@ -40,6 +39,28 @@ const rawArticles: Article[] = [
       "Angular"
     ],
     contentFile: "front-end-network-performance-optimization.md",
+  }, 
+  {
+    id: "4",
+    slug: "front-end-asset-performance-optimization",
+    title: "Front-End Asset Performance Optimization: A Practical Guide",
+    description:
+      "A practical, in-depth guide to front-end asset performance optimization. Covers image, video, and font optimization techniques, progressive enhancement, responsive and adaptive loading, client hints, JavaScript loading strategies (defer, async, lazy loading, Web Workers), critical CSS, rendering pipeline fundamentals, and real-world performance patterns used in React and Angular applications.",
+    date: "2026-02-04",
+    tags: [
+      "Asset Performance",
+      "Web Performance",
+      "Image Optimization",
+      "Video Optimization",
+      "Font Optimization",
+      "Progressive Enhancement",
+      "Critical CSS",
+      "JavaScript Performance",
+      "Browser Rendering",
+      "React",
+      "Angular"
+    ],
+    contentFile: "front-end-assets-performance-optimization.md",
   }
 ];
 

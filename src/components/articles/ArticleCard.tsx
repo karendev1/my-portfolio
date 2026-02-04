@@ -18,6 +18,15 @@ export function ArticleCard({ article }: ArticleCardProps) {
   });
   const [readTime, setReadTime] = useState<number | null>(null);
 
+  const truncateDescription = (description: string, maxLength: number) => {
+    if (description.length <= maxLength) return description;
+    return description.slice(0, maxLength).trim() + "...";
+  };
+
+  const limitTags = (tags: string[], maxCount: number) => {
+    return tags.slice(0, maxCount);
+  };
+
   useEffect(() => {
     if (!article?.contentFile) return;
 
@@ -35,9 +44,14 @@ export function ArticleCard({ article }: ArticleCardProps) {
       <Card className="group bg-card/50 backdrop-blur-sm border-border hover:border-primary/30 card-hover h-full">
         <CardHeader className="pb-3">
           <div className="flex flex-wrap gap-2 mb-3">
-            {article.tags.map((tag) => (
+            {limitTags(article.tags, 3).map((tag) => (
               <TechBadge key={tag} name={tag} />
             ))}
+            {article.tags.length > 3 && (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-mono font-medium rounded-full bg-muted text-muted-foreground border border-border">
+                +{article.tags.length - 3}
+              </span>
+            )}
           </div>
           <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
             {article.title}
@@ -45,7 +59,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
         </CardHeader>
 
         <CardContent>
-          <p className="text-sm text-muted-foreground mb-4">{article.description}</p>
+          <p className="text-sm text-muted-foreground mb-4">{truncateDescription(article.description, 120)}</p>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
